@@ -1,0 +1,16 @@
+.login {
+    padding: 60px 20px;
+}
+
+.login form {
+    margin: 0 auto;
+    max-width: 320px;
+}
+
+.loginButton {
+    margin-top: 10px;
+    border-radius: 7px;
+    width: 320px;
+    color: white;
+    background-color: rgb(19, 121, 206);
+}

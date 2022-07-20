@@ -1,0 +1,22 @@
+.cardSingle {
+    width: 300px;
+    height: 500px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px auto
+}
+
+.cardImage image {
+    width: 300px;
+    height: 300px;
+}
+
+.cardImage {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+}
