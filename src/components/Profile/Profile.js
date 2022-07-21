@@ -1,28 +1,28 @@
-import "../Profile/profile.css";
-
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { userSelector } from "../../redux/userSlice";
+import "../Profile/profile.css";
 import { logout } from "../../redux/userSlice";
 
 function Profile() {
-    const user = useSelector(userSelector);
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('autorized');
+        localStorage.removeItem('authorized');
+        localStorage.removeItem('username');
         dispatch(logout())
         navigate('/login')
+        //reload I wrote because when I didn't write, it didn't update at once, it couldn't read from localstorige
+        window.location.reload()
     }
 
     return (
         <div >
-            <p>Hello {user.username}</p>
+            <h1>Profile page</h1>
+            <h2>Hello {localStorage.getItem("username")}</h2>
             <button onClick={handleLogout}> logout </button>
         </div>
     )

@@ -1,11 +1,11 @@
-import "../NewsItem/newsItem.css";
-
 import { useNavigate } from "react-router-dom";
+
+import "../NewsItem/newsItem.css";
 
 function NewsItem({ id, image, title, description }) {
 
     const navigate = useNavigate();
-    
+
     return (
         <div className="card" >
             <div className="cardImage">

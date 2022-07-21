@@ -1,15 +1,9 @@
 import "../Header/header.css";
 
-import { useSelector } from "react-redux";
+import { BsFillArrowUpCircleFill, BsFillArrowDownCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-import { userSelector } from "../../redux/userSlice";
-
-
-function Header({ value, onChange }) {
-
-    const user = useSelector(userSelector);
-
+function Header({ value, onChange, setSortType }) {
     return (
         <div className="d-flex flex-row justify-content-between ">
             <div>
@@ -21,6 +15,9 @@ function Header({ value, onChange }) {
                     <li className="nav-item">
                         <Link className="nav-link" to="/news">News</Link>
                     </li>
+                    {localStorage.getItem("authorized") ? <li className="nav-item">
+                        <Link className="nav-link" to="/profile">profile</Link>
+                    </li> : <></>}
 
                     <li>
                         <input className="search"
@@ -30,9 +27,15 @@ function Header({ value, onChange }) {
                             value={value}
                         />
                     </li>
+                    <li>
+                        <button onClick={() => setSortType("asc")}><span><BsFillArrowUpCircleFill /></span></button>
+                        <button onClick={() => setSortType("desc")}><span><BsFillArrowDownCircleFill /></span></button>
+                        <button onClick={() => setSortType("")}>X</button>
+                    </li>
+
                 </ul>
             </div>
-            {!user ?
+            {!localStorage.getItem('authorized') ?
                 <div>
                     <ul className="nav">
                         <li className="nav-item">

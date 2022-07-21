@@ -1,10 +1,10 @@
-import "../Login/login.css";
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import { v4 as uuidv4 } from 'uuid'
 
+import "../Login/login.css";
 import { authSelector, logedin } from "../../redux/userSlice";
 
 function Login() {
@@ -12,9 +12,7 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
-
     const isAuth = useSelector(authSelector);
 
     const validateForm = () => {
@@ -27,17 +25,19 @@ function Login() {
         const data = {
             username: username,
             password: password,
-            token: "11111"
+            token: uuidv4()
         }
-        const user = dispatch(logedin(data));
-        if (user.payload && user.payload.token) {
-            localStorage.setItem('token', user.payload.token);
-            localStorage.setItem('autorized', true);
-        }
-    }
 
-    if (isAuth) {
-        navigate('/profile')
+        const user = dispatch(logedin(data));
+
+        if (user && isAuth) {
+            localStorage.setItem('token', user.payload.token);
+            localStorage.setItem('authorized', true);
+            localStorage.setItem('username', user.payload.username);
+            navigate('/profile')
+            //reload I wrote because when I didn't write, it didn't update at once, it couldn't read from localstorige?
+            window.location.reload()
+        }
     }
 
     return (

@@ -1,13 +1,11 @@
-import "../SingleNews/singleNews.css";
-
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import "../SingleNews/singleNews.css";
 import { newsSelector } from "../../redux/newsSlice";
 
 function SingleNews() {
-    const { news } = useSelector(newsSelector)
-
+    const { news } = useSelector(newsSelector);
     const id = useParams().id;
 
     const singleNews = news.filter(item => item.id === Number(id))[0]
